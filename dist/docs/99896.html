@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+                <meta charset="UTF-8">
+                <title>添加子表 - 文档 - 企业微信开发者中心</title>
+                <link rel="stylesheet" href="../doc-style.css">
+                </head>
+                <body>
+                <div id="js-ep-doc-cnt" class="ep-doc-area-cnt">
+    <div class="ep-doc-area-top" id="js-ep-doc-cnt-title">
+      <div class="ep-doc-area-title">
+        添加子表
+      </div>
+      <div class="ep-doc-area-subtitle">最后更新：2024/09/12</div>
+    </div>
+    <div class="ep-doc-area-cherry cherry-markdown cherry-wecom" id="js-ep-doc-cnt-md"><div data-inline-code-theme="red" data-code-block-theme="coy"><dir class="toc" data-sign="b6e442307aaffb2a63d4deb4c528b520-1" data-lines="1"><p class="toc-title">目录</p><li class="toc-li"><a href="#%E6%B7%BB%E5%8A%A0%E5%AD%90%E8%A1%A8" class="level-2">添加子表</a></li></dir><h2 id="%E6%B7%BB%E5%8A%A0%E5%AD%90%E8%A1%A8" data-sign="129cca861661ba0527f05db26a9c4865" data-lines="1"><a class="anchor" href="#%E6%B7%BB%E5%8A%A0%E5%AD%90%E8%A1%A8"></a>添加子表</h2><p data-sign="618237beb911271026cb1f013aa2f304" data-type="p" data-lines="1">本接口用于在表格的某个位置添加一个智能表，该智能表不存在视图、记录和字段，可以使用 API 在该智能表中添加视图、记录和字段。</p><p data-sign="3a7a7182501054eccccc63d68dba7adc" data-type="p" data-lines="3"><strong>请求方式</strong>：POST(HTTPS)<br><strong>请求地址</strong>：https://qyapi.weixin.qq.com/cgi-bin/wedoc/smartsheet/add_sheet?access_token=ACCESS_TOKEN</p><p data-sign="6bbe2a729b4377a7ef37bc11534be979" data-type="p" data-lines="1"><strong>请求包体</strong>：</p><div data-sign="206ad4d5f43b5fa8c1c6ad8b04dff4b2" data-type="codeBlock" data-lines="9">
+      <pre class="language-json"><code class="language-json wrap"><span class="code-line"><span class="token punctuation">{</span></span>
+<span class="code-line">	<span class="token property">"docid"</span><span class="token operator">:</span> <span class="token string">"DOCID"</span><span class="token punctuation">,</span></span>
+<span class="code-line">	<span class="token property">"properties"</span><span class="token operator">:</span> <span class="token punctuation">{</span></span>
+<span class="code-line">		<span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"智能表"</span><span class="token punctuation">,</span></span>
+<span class="code-line">		<span class="token property">"index"</span><span class="token operator">:</span> <span class="token number">3</span></span>
+<span class="code-line">	<span class="token punctuation">}</span></span>
+<span class="code-line"><span class="token punctuation">}</span></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><p data-sign="54d2f7abd4f226094d9bdd35b3129b56" data-type="p" data-lines="1"><strong>参数说明</strong></p><div class="cherry-table-container" data-sign="08633d034bd409eba00fdd194c3a8b68" data-lines="6">
+        <table class="cherry-table"><thead><tr><th align="left">参数</th><th>类型</th><th>是否必须</th><th>说明</th></tr></thead><tbody><tr><td align="left">docid</td><td>string</td><td>是</td><td>文档的docid</td></tr><tr><td align="left">properties</td><td>object</td><td>否</td><td>智能表属性</td></tr><tr><td align="left">properties.title</td><td>string</td><td>否</td><td>智能表标题</td></tr><tr><td align="left">properties.index</td><td>int32</td><td>否</td><td>智能表下标</td></tr></tbody></table></div><p data-sign="br2" data-type="br" data-lines="2">&nbsp;</p><p data-sign="fd1c44250d466f3563712de3fc0f1925" data-type="p" data-lines="1"><strong>权限说明</strong></p><ul data-sign="e3f053c2e8af4cab1513d2f45e8bf0eclist3" data-lines="3" class="cherry-list__default"><li>自建应用需配置到“<a href="#43883" rel="nofollow">可调用应用</a>”列表中的应用secret所获取的accesstoken来调用（<a href="#10013/%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E8%8E%B7%E5%8F%96access_token" rel="nofollow">accesstoken如何获取？</a>）</li><li>第三方应用需具有“文档”权限</li><li>代开发自建应用需具有“文档”权限</li></ul><p data-sign="6394de01a40b78c07ec7af6eaecac7f9" data-type="p" data-lines="1"><strong>返回示例</strong></p><div data-sign="a3917846703932a6fe16949423418e3c" data-type="codeBlock" data-lines="11">
+      <pre class="language-json"><code class="language-json wrap"><span class="code-line"><span class="token punctuation">{</span></span>
+<span class="code-line">	<span class="token property">"errcode"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span></span>
+<span class="code-line">	<span class="token property">"errmsg"</span><span class="token operator">:</span> <span class="token string">"ok"</span><span class="token punctuation">,</span></span>
+<span class="code-line">	<span class="token property">"properties"</span><span class="token operator">:</span> <span class="token punctuation">{</span></span>
+<span class="code-line">		<span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"智能表"</span><span class="token punctuation">,</span></span>
+<span class="code-line">		<span class="token property">"index"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span></span>
+<span class="code-line">		<span class="token property">"sheet_id"</span><span class="token operator">:</span> <span class="token string">"123abc"</span></span>
+<span class="code-line">	<span class="token punctuation">}</span></span>
+<span class="code-line"><span class="token punctuation">}</span></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><p data-sign="54d2f7abd4f226094d9bdd35b3129b56" data-type="p" data-lines="1"><strong>参数说明</strong></p><div class="cherry-table-container" data-sign="04d0e1e2c0ae7d9a54c0eb312dd3d629" data-lines="8">
+        <table class="cherry-table"><thead><tr><th align="left">参数</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td align="left">errcode</td><td>int32</td><td>错误码</td></tr><tr><td align="left">errmsg</td><td>string</td><td>错误码说明</td></tr><tr><td align="left">properties</td><td>object</td><td>智能表属性</td></tr><tr><td align="left">properties.sheet_id</td><td>string</td><td>智能表 ID，创建子表时生成的 6 位随机 ID</td></tr><tr><td align="left">properties.title</td><td>string</td><td>智能表标题</td></tr><tr><td align="left">properties.index</td><td>int32</td><td>智能表下标</td></tr></tbody></table></div></div></div>
+    </div>
+                <script src="../doc-script.js"></script>
+                
+                
+                </body></html>

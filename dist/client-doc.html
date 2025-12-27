@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>客户端API</title>
+        <style>
+            body {
+                margin: 0;
+            }
+            .layout {
+                display: flex;
+                width: 100vw;
+                height: 100vh;
+            }
+            .ep-doc-select {
+                height: 100vh;
+                width: 400px;
+                overflow: scroll;
+            }
+            .ep-doc-special {
+                display: flex;
+                padding-top: 18px;
+                margin-top: 8px;
+                margin-bottom: 10px;
+                border-top: 1px solid rgba(6, 15, 26, 0.07);
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                color: rgba(11, 18, 26, 0.6);
+            }
+            .level-0 {
+                padding-left: 5px;
+                font-weight: 600;
+            }
+            .level-1 {
+                padding-left: 20px;
+                font-weight: 500;
+            }
+            .level-2 {
+                padding-left: 30px;
+                font-weight: 400;
+            }
+            .ep-doc-item {
+                line-height: 36px;
+            }
+            .ep-doc-item,
+            a {
+                display: block;
+                line-height: 36px;
+                text-decoration: none;
+                color: inherit;
+            }
+            .level-1.active,
+            .level-2.active {
+                background-color: #267ef0;
+                color: #ffffff;
+            }
+            #docFrame {
+                flex: 1;
+                border: none;
+            }
+            .ep-doc-wrap {
+                transition: all 0.3s ease;
+            }
+            .ep-doc-wrap.collapsed > .ep-doc-wrap,
+            .ep-doc-wrap.collapsed > .ep-doc-special {
+                height: 0;
+                overflow: hidden;
+                padding: 0;
+                margin: 0;
+                border: none;
+            }
+            .ep-doc-item {
+                cursor: pointer; /* 鼠标指针提示可点击 */
+                position: relative;
+            }
+            /* 只有包含子元素的ep-doc-item才显示箭头 */
+            .ep-doc-item.has-children::after {
+                content: "▾";
+                position: absolute;
+                right: 10px;
+                transition: transform 0.3s ease;
+            }
+            .level-2 .ep-doc-item::after {
+                content: none; /* 移除伪元素内容 */
+            }
+            .ep-doc-wrap.collapsed > .ep-doc-item.has-children::after {
+                transform: rotate(-90deg);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="layout">
+            <div class="ep-doc-select">
+                <div class="ep-doc-wrap level-0">
+                    <div class="ep-doc-item">小程序</div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">开发指南</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/92455" class="ep-doc-item"> 开发前须知 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91502" class="ep-doc-item">
+                                开发者工具插件支持 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/92370" class="ep-doc-item">
+                                小程序关联到企业微信 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/92380" class="ep-doc-item"> 小程序体验版配置 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91503" class="ep-doc-item">
+                                微信小程序API支持情况 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91504" class="ep-doc-item">
+                                微信小程序组件支持情况 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-special">
+                            <span>基础</span>
+                        </div>
+                        <!---->
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">登录</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/92426" class="ep-doc-item"> 小程序登录流程 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91506" class="ep-doc-item"> wx.qy.login </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91507" class="ep-doc-item"> code2Session </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91508" class="ep-doc-item">
+                                wx.qy.checkSession </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">基础接口</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91510" class="ep-doc-item"> wx.getSystemInfo </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91511" class="ep-doc-item">
+                                wx.getSystemInfoSync </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95046" class="ep-doc-item">
+                                wx.qy.getSystemInfo </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91512" class="ep-doc-item"> wx.qy.canIUse </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94321" class="ep-doc-item"> wx.qy.getContext </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">企业通讯录</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93861" class="ep-doc-item">
+                                wx.qy.selectEnterpriseContact </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93866" class="ep-doc-item">
+                                wx.qy.openUserProfile </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91617" class="ep-doc-item">
+                                wx.qy.getEnterpriseUserInfo </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91618" class="ep-doc-item"> wx.qy.getAvatar </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91619" class="ep-doc-item"> wx.qy.getQrCode </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91620" class="ep-doc-item"> wx.qy.getMobile </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91621" class="ep-doc-item"> wx.qy.getEmail </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94184" class="ep-doc-item">
+                                wx.qy.selectCorpGroupContact </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94435" class="ep-doc-item">
+                                wx.qy.claimClassAdmin </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">上下游</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95706" class="ep-doc-item"> 聊天工具栏接口 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">会话</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91519" class="ep-doc-item">
+                                wx.qy.openEnterpriseChat </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93222" class="ep-doc-item">
+                                wx.qy.updateEnterpriseChat </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94370" class="ep-doc-item">
+                                wx.qy.sendChatMessage </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94488" class="ep-doc-item"> 私密消息 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94426" class="ep-doc-item">
+                                wx.qy.createCorpGroupChat </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94427" class="ep-doc-item">
+                                wx.qy.updateCorpGroupChat </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">应用管理</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95537" class="ep-doc-item"> 打开应用管理页面 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">NFC接口</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91526" class="ep-doc-item">
+                                wx.qy.getNFCReaderState </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91527" class="ep-doc-item">
+                                wx.qy.startNFCReader </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91528" class="ep-doc-item">
+                                wx.qy.stopNFCReader </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91529" class="ep-doc-item"> onNFCReadMessage </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">更多</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/92372" class="ep-doc-item"> 小程序发送通知 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/92373" class="ep-doc-item"> 语音转文字接口 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/92374" class="ep-doc-item"> 转发成功回调 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95026" class="ep-doc-item"> 从会话选择文件 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-special">
+                            <span>连接微信</span>
+                        </div>
+                        <!---->
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">客户联系</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93867" class="ep-doc-item">
+                                wx.qy.selectExternalContact </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93567" class="ep-doc-item">
+                                wx.qy.openUserProfile </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93568" class="ep-doc-item">
+                                wx.qy.getCurExternalContact </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93570" class="ep-doc-item">
+                                wx.qy.getCurExternalChat </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93863" class="ep-doc-item">
+                                wx.qy.sendChatMessage </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93571" class="ep-doc-item">
+                                wx.qy.shareToExternalContact </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93572" class="ep-doc-item">
+                                wx.qy.shareToExternalChat </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93864" class="ep-doc-item">
+                                wx.qy.navigateToAddCustomer </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93582" class="ep-doc-item"> 「联系我」插件 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93884" class="ep-doc-item">
+                                在小程序中加入群聊 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94608" class="ep-doc-item">
+                                wx.qy.shareToExternalMoments </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94846" class="ep-doc-item">
+                                wx.qy.updateMomentsSetting </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">微信客服</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94766" class="ep-doc-item"> 客服工具栏接口 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94739" class="ep-doc-item">
+                                微信小程序打开微信客服 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">对外收款</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95952" class="ep-doc-item"> 发起对外收款 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95953" class="ep-doc-item"> 发起退款 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">家校沟通</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94788" class="ep-doc-item"> 发起班级收款 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94935" class="ep-doc-item">
+                                微信小程序进入填写学生资料页面 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">政民沟通</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94934" class="ep-doc-item">
+                                微信进入居民上报小程序 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-special">
+                            <span>办公</span>
+                        </div>
+                        <!---->
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">文档</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/98060" class="ep-doc-item"> 创建文档 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/99168" class="ep-doc-item"> 选择文档 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">日程</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/97693" class="ep-doc-item"> 查看日程闲忙状态 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">会议</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93814" class="ep-doc-item"> 创建快速会议 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93815" class="ep-doc-item"> 进入会议 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">微盘</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/99008" class="ep-doc-item"> 选择目录位置 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/99165" class="ep-doc-item"> 选择文件 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">直播</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93816" class="ep-doc-item"> 创建立即直播 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93817" class="ep-doc-item"> 进入直播 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93818" class="ep-doc-item"> 观看直播回放 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93819" class="ep-doc-item"> 下载直播回放 </a
+                            ><!---->
+                        </div>
+                    </div>
+                </div>
+                <div class="ep-doc-wrap level-0">
+                    <div class="ep-doc-item">JS-SDK</div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">开发指南</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/90513" class="ep-doc-item"> 概述 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/90514" class="ep-doc-item"> 开始使用 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-special">
+                            <span>基础</span>
+                        </div>
+                        <!---->
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">基础接口</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94313" class="ep-doc-item"> ww.register </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100694" class="ep-doc-item"> ww.getSignature </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94312" class="ep-doc-item"> ww.checkJsApi </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94315" class="ep-doc-item"> ww.getContext </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">开放接口</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/98268" class="ep-doc-item">
+                                创建企业微信登录面板 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">企业通讯录</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91793" class="ep-doc-item"> 选择通讯录成员 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91795" class="ep-doc-item">
+                                打开个人信息页接口 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94187" class="ep-doc-item">
+                                企业互联/上下游选人接口 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94434" class="ep-doc-item"> 认领老师班级 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">聊天工具栏</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100746" class="ep-doc-item"> 获取当前客户ID </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100747" class="ep-doc-item">
+                                获取当前客户群的群ID </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100748" class="ep-doc-item">
+                                隐藏聊天附件栏的发送按钮 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100749" class="ep-doc-item">
+                                分享消息到当前会话 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">上下游</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95709" class="ep-doc-item"> 上下游聊天工具栏 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100367" class="ep-doc-item">
+                                获取上下游联系人ID </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100368" class="ep-doc-item">
+                                获取上下游互联群ID </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">会话</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/92525" class="ep-doc-item"> 打开会话 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93223" class="ep-doc-item"> 变更群成员 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94549" class="ep-doc-item">
+                                打开已有群聊并发送消息 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94345" class="ep-doc-item">
+                                打开个人聊天窗口schema </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94430" class="ep-doc-item">
+                                创建企业互联/上下游会话 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94432" class="ep-doc-item">
+                                变更企业互联/上下游群成员 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">分享</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100501" class="ep-doc-item"> 概述 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100502" class="ep-doc-item">
+                                监听「转发」按钮点击 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100503" class="ep-doc-item">
+                                监听「微信」按钮点击 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100504" class="ep-doc-item">
+                                监听「朋友圈」按钮点击 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100505" class="ep-doc-item">
+                                自定义转发到会话 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100506" class="ep-doc-item">
+                                自定义转发到微信 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">私密分享</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100507" class="ep-doc-item"> 概述 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100508" class="ep-doc-item"> 设置私密消息 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100509" class="ep-doc-item">
+                                获取私密消息Ticket </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100510" class="ep-doc-item">
+                                获取私密消息信息 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">应用管理</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95536" class="ep-doc-item"> 打开应用管理页面 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">界面</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100850" class="ep-doc-item"> 监听页面返回 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100512" class="ep-doc-item"> 隐藏右上角菜单 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100513" class="ep-doc-item"> 显示右上角菜单 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100514" class="ep-doc-item"> 关闭当前窗口 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100515" class="ep-doc-item">
+                                批量隐藏功能按钮 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100516" class="ep-doc-item">
+                                批量显示功能按钮 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100517" class="ep-doc-item"> 隐藏非基础按钮 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/98235" class="ep-doc-item"> 显示非基础按钮 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100518" class="ep-doc-item"> 打开默认浏览器 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100519" class="ep-doc-item"> 监听截屏事件 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">系统界面</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/90492" class="ep-doc-item"> 调起扫一扫 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/90493" class="ep-doc-item"> 调起电子发票 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91717" class="ep-doc-item"> 跳转到认证界面 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93098" class="ep-doc-item"> 跳转到小程序 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/97267" class="ep-doc-item"> 保持屏幕常亮 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">图像</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100520" class="ep-doc-item"> 选择图片 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100521" class="ep-doc-item"> 预览图片 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100522" class="ep-doc-item"> 上传图片 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100523" class="ep-doc-item"> 下载图片 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100524" class="ep-doc-item"> 获取本地图片 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">音频</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100528" class="ep-doc-item"> 开始录音 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100529" class="ep-doc-item"> 停止录音 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100530" class="ep-doc-item">
+                                监听录音自动停止 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100531" class="ep-doc-item"> 播放语音 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100532" class="ep-doc-item"> 暂停播放 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100533" class="ep-doc-item"> 停止播放 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100534" class="ep-doc-item"> 监听播放完毕 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100535" class="ep-doc-item"> 上传语音 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100536" class="ep-doc-item"> 下载语音 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100537" class="ep-doc-item"> 语音转文字 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">文件</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100538" class="ep-doc-item"> 预览文件 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100539" class="ep-doc-item"> 从会话选择文件 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100767" class="ep-doc-item">
+                                获取本地临时文件 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">Wi-Fi</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100540" class="ep-doc-item"> Wi-Fi-概述 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100541" class="ep-doc-item">
+                                初始化 Wi-Fi 模块 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100542" class="ep-doc-item"> 关闭 Wi-Fi 模块 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100543" class="ep-doc-item"> 连接 Wi-Fi </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100544" class="ep-doc-item"> 获取 Wi-Fi 列表 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100545" class="ep-doc-item">
+                                监听 Wi-Fi 列表更新 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100546" class="ep-doc-item">
+                                监听 Wi-Fi 连接成功 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100547" class="ep-doc-item">
+                                获取已连接中的 Wi-Fi 信息 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">蓝牙</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100548" class="ep-doc-item"> 概述 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100549" class="ep-doc-item"> 初始化蓝牙模块 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100550" class="ep-doc-item"> 关闭蓝牙模块 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100551" class="ep-doc-item">
+                                获取本机蓝牙状态 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100552" class="ep-doc-item">
+                                监听蓝牙状态变化 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100553" class="ep-doc-item">
+                                开始搜寻附近的蓝牙外围设备 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100554" class="ep-doc-item">
+                                停止搜寻蓝牙外围设备 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100555" class="ep-doc-item">
+                                获取已发现的蓝牙设备 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100556" class="ep-doc-item">
+                                监听寻找到新设备 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100557" class="ep-doc-item">
+                                获取已连接状态的设备 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">蓝牙（BLE）</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100707" class="ep-doc-item"> 概述 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100558" class="ep-doc-item"> 连接BLE设备 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100559" class="ep-doc-item"> 断开设备连接 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100560" class="ep-doc-item">
+                                监听BLE设备连接状态 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100561" class="ep-doc-item">
+                                获取BLE设备所有服务 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100562" class="ep-doc-item">
+                                获取BLE设备特征值 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100563" class="ep-doc-item">
+                                读取BLE设备特征值数据 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100564" class="ep-doc-item">
+                                写入BLE设备特征值数据 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100565" class="ep-doc-item">
+                                启用BLE设备特征值订阅 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100566" class="ep-doc-item">
+                                监听BLE设备特征值变化 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">iBeacon</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100567" class="ep-doc-item"> 概述 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100568" class="ep-doc-item"> 搜索附近设备 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100569" class="ep-doc-item"> 停止搜索设备 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100570" class="ep-doc-item">
+                                获取已搜索到的设备 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100571" class="ep-doc-item"> 监听设备更新 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100572" class="ep-doc-item">
+                                监听设备服务状态 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">网络</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100573" class="ep-doc-item"> 获取网络状态 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100574" class="ep-doc-item"> 监听网络状态 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">剪贴板</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100575" class="ep-doc-item"> 获取剪贴板内容 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100576" class="ep-doc-item"> 设置剪贴板内容 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">地理位置</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100577" class="ep-doc-item"> 打开内置地图 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100578" class="ep-doc-item"> 获取地理位置 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100579" class="ep-doc-item"> 打开持续定位 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100580" class="ep-doc-item"> 停止持续定位 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100581" class="ep-doc-item"> 监听地理位置 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-special">
+                            <span>连接微信</span>
+                        </div>
+                        <!---->
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">客户联系</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91797" class="ep-doc-item">
+                                外部联系人选人接口 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91798" class="ep-doc-item">
+                                打开个人信息页接口 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91789" class="ep-doc-item"> 聊天工具栏接口 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93555" class="ep-doc-item"> 群发消息给客户 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93556" class="ep-doc-item"> 群发消息到客户群 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93071" class="ep-doc-item"> 进入添加客户界面 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94607" class="ep-doc-item">
+                                发表内容到客户朋友圈 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94845" class="ep-doc-item">
+                                设置朋友圈封面与签名 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">微信客服</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94764" class="ep-doc-item"> 聊天工具栏接口 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94869" class="ep-doc-item">
+                                进入微信客服消息界面 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">对外收款</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95927" class="ep-doc-item"> 发起对外收款 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/95928" class="ep-doc-item"> 发起退款 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">家校沟通</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94784" class="ep-doc-item"> 发起班级收款 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94936" class="ep-doc-item">
+                                微信H5页面唤起填写学生资料页面 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">政民沟通</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/94938" class="ep-doc-item">
+                                微信进入居民上报小程序 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-special">
+                            <span>办公</span>
+                        </div>
+                        <!---->
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">文档</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/98066" class="ep-doc-item"> 创建文档 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/99157" class="ep-doc-item"> 选择文档 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/99344" class="ep-doc-item">
+                                文件/文档标题展示组件 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">日程</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/97312" class="ep-doc-item"> 查看日程闲忙状态 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">会议</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93806" class="ep-doc-item"> 创建快速会议 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93807" class="ep-doc-item"> 进入会议 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">微盘</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/99009" class="ep-doc-item"> 选择目录位置 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/99154" class="ep-doc-item"> 选择文件 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/99345" class="ep-doc-item">
+                                文件/文档标题展示组件 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">直播</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93808" class="ep-doc-item"> 创建立即直播 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93809" class="ep-doc-item"> 进入直播 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93810" class="ep-doc-item"> 观看直播回放 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/93811" class="ep-doc-item"> 下载直播回放 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">审批</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/97202" class="ep-doc-item"> 应用发起审批 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/97067" class="ep-doc-item">
+                                审批控件中的外部选项 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100722" class="ep-doc-item"> 保存选择的选项 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/100723" class="ep-doc-item">
+                                获取已选择的选项 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-special"><img /><span></span></div>
+                        <!---->
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">附录</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/90506" class="ep-doc-item"> JS-SDK 签名算法 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/90508" class="ep-doc-item"> 所有菜单项列表 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/90509" class="ep-doc-item">
+                                常见错误及解决方法 </a
+                            ><!---->
+                        </div>
+                    </div>
+                </div>
+                <div class="ep-doc-wrap level-0">
+                    <div class="ep-doc-item">移动端SDK</div>
+                    <div class="ep-doc-wrap level-1">
+                        <a href="/document/path/90294" class="ep-doc-item"> 概述 </a
+                        ><!---->
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">企业微信登录</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91193" class="ep-doc-item"> iOS应用 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91194" class="ep-doc-item"> Android应用 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/101021" class="ep-doc-item"> Harmony应用 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <div class="ep-doc-item">企业微信分享</div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91195" class="ep-doc-item"> iOS应用 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/91196" class="ep-doc-item"> Android应用 </a
+                            ><!---->
+                        </div>
+                        <div class="ep-doc-wrap level-2">
+                            <a href="/document/path/101022" class="ep-doc-item"> Harmony应用 </a
+                            ><!---->
+                        </div>
+                    </div>
+                    <div class="ep-doc-wrap level-1">
+                        <a href="/document/path/94740" class="ep-doc-item"> App跳转微信客服 </a
+                        ><!---->
+                    </div>
+                </div>
+                <div class="ep-doc-wrap level-0">
+                    <div class="ep-doc-item">消息推送（原“群机器人”）</div>
+                    <div class="ep-doc-wrap level-1">
+                        <a href="/document/path/91770" class="ep-doc-item"> 消息推送配置说明 </a
+                        ><!---->
+                    </div>
+                </div>
+            </div>
+            <iframe id="docFrame"></iframe>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>

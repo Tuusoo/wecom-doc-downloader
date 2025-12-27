@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+                <meta charset="UTF-8">
+                <title>概述 - 文档 - 企业微信开发者中心</title>
+                <link rel="stylesheet" href="../doc-style.css">
+                </head>
+                <body>
+                <div id="js-ep-doc-cnt" class="ep-doc-area-cnt">
+    <div class="ep-doc-area-top" id="js-ep-doc-cnt-title">
+      <div class="ep-doc-area-title">
+        概述
+      </div>
+      <div class="ep-doc-area-subtitle">最后更新：2018/10/24</div>
+    </div>
+    <div class="ep-doc-area-cherry cherry-markdown cherry-wecom" id="js-ep-doc-cnt-md"><div data-inline-code-theme="red" data-code-block-theme="coy"><h2 data-sign="968634b1c8104dfaee0e82ac193ce6c2" data-lines="1" id="%E5%BC%82%E6%AD%A5%E6%89%B9%E9%87%8F%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E"><a class="anchor" href="#%E5%BC%82%E6%AD%A5%E6%89%B9%E9%87%8F%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E"></a>异步批量接口说明</h2><p data-sign="7faf72ce28e86b8673ef5fdd5bc8956d" data-type="p" data-lines="3">异步批量接口用于大批量数据的处理，提交后接口即返回，企业微信会在后台继续执行任务。<br>执行完成后，企业微信后台会通过<a href="#12974/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%AE%8C%E6%88%90%E4%BA%8B%E4%BB%B6%E6%8E%A8%E9%80%81" rel="nofollow">任务事件</a>通知企业获取结果。事件的内容是加密的，解密过程请参考 [消息的加解密处理][signure]，任务事件请参考<a href="#12974/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%AE%8C%E6%88%90%E4%BA%8B%E4%BB%B6%E6%8E%A8%E9%80%81" rel="nofollow">异步任务完成事件推送</a>。<br>目前，仅为通讯录更新提供了异步批量接口</p><h2 id="%E9%80%9A%E8%AE%AF%E5%BD%95%E6%9B%B4%E6%96%B0" data-sign="5b8285f7d7291f5bccf7c0e18588f71a" data-lines="2"><a class="anchor" href="#%E9%80%9A%E8%AE%AF%E5%BD%95%E6%9B%B4%E6%96%B0"></a>通讯录更新</h2><p data-sign="c66a3f128d84563bd06b922bf5ff2ff9" data-type="p" data-lines="2">通讯录更新接口提供三种更新方法：1) 增量更新成员 2）全量覆盖成员 3) 全量覆盖部门。后面具体描述更新逻辑。<br>如果企业要做到与企业微信通讯录完全一致，可先调用全量覆盖部门接口，再调用全量覆盖成员接口，即可保持通讯录完全一致。</p><p data-sign="6216cedabd1c5529d58a6d0aedd78f0b" data-type="p" data-lines="7"><strong>使用步骤：</strong><br>1.下载接口对应的csv模板，如果有扩展属性，请自行添加（扩展属性需要在WEB管理端创建后才生效，否则忽略未知属性的赋值。见<a href="#10138/%E6%89%A9%E5%B1%95%E5%B1%9E%E6%80%A7%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95" rel="nofollow">创建扩展属性</a>）<br>2.按模板的格式，生成接口所需的数据文件（必须保持为<font color="red">utf-8</font>格式）<br>3.通过<a href="#10112" rel="nofollow">上传媒体文件接口</a>上传数据文件，获取media_id<br>4.调用通讯录更新接口，传入media_id参数<br>5.接收任务完成事件，并获取任务执行结果</p></div></div>
+    </div>
+                <script src="../doc-script.js"></script>
+                
+                
+                </body></html>

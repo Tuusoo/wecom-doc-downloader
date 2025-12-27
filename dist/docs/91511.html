@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+                <meta charset="UTF-8">
+                <title>wx.getSystemInfoSync - 文档 - 企业微信开发者中心</title>
+                <link rel="stylesheet" href="../doc-style.css">
+                </head>
+                <body>
+                <div id="js-ep-doc-cnt" class="ep-doc-area-cnt">
+    <div class="ep-doc-area-top" id="js-ep-doc-cnt-title">
+      <div class="ep-doc-area-title">
+        wx.getSystemInfoSync
+      </div>
+      <div class="ep-doc-area-subtitle">最后更新：2020/10/10</div>
+    </div>
+    <div class="ep-doc-area-cherry cherry-markdown cherry-wecom" id="js-ep-doc-cnt-md"><div data-inline-code-theme="red" data-code-block-theme="coy"><h3 data-sign="f5a67ff9ca63a00d3b13c45feaeb8656" data-lines="1" id="wxgetsysteminfosyncobject-object"><a class="anchor" href="#wxgetsysteminfosyncobject-object"></a>wx.getSystemInfoSync(Object object)</h3><blockquote data-sign="2e40f0c16d9bf4a0c07d82a66ab7a096_2" data-lines="2">小程序可以在微信和企业微信中调用此接口，但是在企业微信中调用此接口时，会额外返回一个 environment 字段（微信中不返回），如此字段值为 wxwork，则表示当前小程序运行在企业微信环境中。注意：只有运行在企业微信环境中，才能调用wx.qy的接口。</blockquote><p data-sign="32253a4edb468368e9b11d77226d6f8c" data-type="p" data-lines="2">wx.getSystemInfo 的同步版本</p><h4 id="%E8%BF%94%E5%9B%9E%E5%80%BC" data-sign="d05e86231c058145d0387e0830150d73" data-lines="2"><a class="anchor" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"></a>返回值</h4><p data-sign="2af9fbc618b17cf6a6fb5cb8c9589844" data-type="p" data-lines="2"><strong>Object res</strong></p><div class="cherry-table-container" data-sign="23cc72354f9d01b2f5dfb74f712a8f55" data-lines="18">
+        <table class="cherry-table"><thead><tr><th>属性</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>brand</td><td>string</td><td>设备品牌</td></tr><tr><td>model</td><td>string</td><td>设备型号</td></tr><tr><td>pixelRatio</td><td>number</td><td>设备像素比</td></tr><tr><td>screenWidth</td><td>number</td><td>屏幕宽度，单位px</td></tr><tr><td>screenHeight</td><td>number</td><td>屏幕高度，单位px</td></tr><tr><td>windowWidth</td><td>number</td><td>可使用窗口宽度，单位px</td></tr><tr><td>windowHeight</td><td>number</td><td>可使用窗口高度，单位px</td></tr><tr><td>statusBarHeight</td><td>number</td><td>状态栏的高度，单位px</td></tr><tr><td>language</td><td>string</td><td>微信设置的语言</td></tr><tr><td>version</td><td>string</td><td>微信版本号</td></tr><tr><td>system</td><td>string</td><td>操作系统及版本</td></tr><tr><td>platform</td><td>string</td><td>客户端平台</td></tr><tr><td>fontSizeSetting</td><td>number</td><td>用户字体大小（单位px）。以微信客户端「我-设置-通用-字体大小」中的设置为准</td></tr><tr><td>SDKVersion</td><td>string</td><td>客户端基础库版本</td></tr><tr><td>benchmarkLevel</td><td>number</td><td>设备性能等级（仅Android小游戏）。取值为：-2 或 0（该设备无法运行小游戏），-1（性能未知），&gt;=1（设备性能值，该值越高，设备性能越好，目前最高不到50）</td></tr><tr><td>environment</td><td>string</td><td>小程序当前运行环境</td></tr></tbody></table></div><p data-sign="br2" data-type="br" data-lines="2">&nbsp;</p><h4 data-sign="473d169f6756f207486ae5325f177c43" data-lines="1" id="%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><a class="anchor" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"></a>示例代码</h4><div data-sign="27b061ed9b73d5316044018ff460ff91" data-type="codeBlock" data-lines="14">
+      <pre class="language-js"><code class="language-js wrap"><span class="code-line">wx<span class="token punctuation">.</span><span class="token function">getSystemInfo</span><span class="token punctuation">(</span><span class="token punctuation">{</span></span>
+<span class="code-line">  <span class="token function">success</span> <span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="code-line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>model<span class="token punctuation">)</span></span>
+<span class="code-line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>pixelRatio<span class="token punctuation">)</span></span>
+<span class="code-line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>windowWidth<span class="token punctuation">)</span></span>
+<span class="code-line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>windowHeight<span class="token punctuation">)</span></span>
+<span class="code-line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>language<span class="token punctuation">)</span></span>
+<span class="code-line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>version<span class="token punctuation">)</span></span>
+<span class="code-line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>platform<span class="token punctuation">)</span></span>
+<span class="code-line">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>environment<span class="token punctuation">)</span></span>
+<span class="code-line">  <span class="token punctuation">}</span></span>
+<span class="code-line"><span class="token punctuation">}</span><span class="token punctuation">)</span></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><div data-sign="4f7e5e02594bb626bed9b485fe27d19f" data-type="codeBlock" data-lines="16">
+      <pre class="language-js"><code class="language-js wrap"><span class="code-line"><span class="token keyword">try</span> <span class="token punctuation">{</span></span>
+<span class="code-line">  <span class="token keyword">const</span> res <span class="token operator">=</span> wx<span class="token punctuation">.</span><span class="token function">getSystemInfoSync</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="code-line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>model<span class="token punctuation">)</span></span>
+<span class="code-line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>pixelRatio<span class="token punctuation">)</span></span>
+<span class="code-line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>windowWidth<span class="token punctuation">)</span></span>
+<span class="code-line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>windowHeight<span class="token punctuation">)</span></span>
+<span class="code-line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>language<span class="token punctuation">)</span></span>
+<span class="code-line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>version<span class="token punctuation">)</span></span>
+<span class="code-line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>platform<span class="token punctuation">)</span></span>
+<span class="code-line">  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>environment<span class="token punctuation">)</span></span>
+<span class="code-line"><span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="code-line">  <span class="token comment">// Do something when catch error</span></span>
+<span class="code-line"><span class="token punctuation">}</span></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div></div></div>
+    </div>
+                <script src="../doc-script.js"></script>
+                
+                
+                </body></html>

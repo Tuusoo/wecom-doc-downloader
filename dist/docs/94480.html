@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+                <meta charset="UTF-8">
+                <title>删除网格 - 文档 - 企业微信开发者中心</title>
+                <link rel="stylesheet" href="../doc-style.css">
+                </head>
+                <body>
+                <div id="js-ep-doc-cnt" class="ep-doc-area-cnt">
+    <div class="ep-doc-area-top" id="js-ep-doc-cnt-title">
+      <div class="ep-doc-area-title">
+        删除网格
+      </div>
+      <div class="ep-doc-area-subtitle">最后更新：2023/11/30</div>
+    </div>
+    <div class="ep-doc-area-cherry cherry-markdown cherry-wecom" id="js-ep-doc-cnt-md"><div data-inline-code-theme="red" data-code-block-theme="coy"><p data-sign="53609eaae205f24ca3c19feb6fed464b" data-type="p" data-lines="2"><strong>请求方式：</strong> POST（<strong>HTTPS</strong>）<br><strong>请求地址：</strong> https://qyapi.weixin.qq.com/cgi-bin/report/grid/delete?access_token=ACCESS_TOKEN</p><p data-sign="382edfac6a8b56ec46332834f416136e" data-type="p" data-lines="2"><strong>请求包体：</strong></p><div data-sign="7d11a7695de6c9ed4463739e6a923e6d" data-type="codeBlock" data-lines="7">
+      <pre class="language-json"><code class="language-json wrap"><span class="code-line"><span class="token punctuation">{</span></span>
+<span class="code-line">    <span class="token property">"grid_id"</span><span class="token operator">:</span> <span class="token string">"grid_id"</span></span>
+<span class="code-line"><span class="token punctuation">}</span></span>
+<span class="code-line"></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><p data-sign="f2e21495051cadd2d5b0f8a3eedbae8d" data-type="p" data-lines="2"><strong>参数说明：</strong></p><div class="cherry-table-container" data-sign="b879d38a8a4ce0e18b1083a367b0034c" data-lines="4">
+        <table class="cherry-table"><thead><tr><th>参数</th><th>必须</th><th>说明</th></tr></thead><tbody><tr><td>access_token</td><td>是</td><td>调用接口凭证。“<a href="https://work.weixin.qq.com/api/doc/90001/90143/90605" rel="nofollow">获取access_token</a>”</td></tr><tr><td>grid_id</td><td>是</td><td>网格id，根节点可以填空</td></tr></tbody></table></div><p data-sign="c4ad0998982d2a1c42d64cf65c725b16" data-type="p" data-lines="2">当目标网格及其子网格中不包含网格员时，可以删除目标网格及其全部子网格</p><p data-sign="be69a8d80807fc12104a6f71258f88a9" data-type="p" data-lines="2"><strong>权限说明：</strong></p><div class="cherry-table-container" data-sign="551619f0cde1d5f2e593f4cb5c7580bd" data-lines="5">
+        <table class="cherry-table"><thead><tr><th>应用类型</th><th>权限要求</th></tr></thead><tbody><tr><td>自建应用</td><td>配置到「<a href="#30633/%E9%85%8D%E7%BD%AE%E5%8F%AF%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%BA%94%E7%94%A8" rel="nofollow">居民联系 - 可调用接口的应用</a>」中</td></tr><tr><td>代开发应用</td><td>暂不支持</td></tr><tr><td>第三方应用</td><td>暂不支持</td></tr></tbody></table></div><p data-sign="0d9e8df569fd1af08e5af1a04c3f7f01" data-type="p" data-lines="1"> <em>注：</em> 从2023年12月1日0点起，不再支持通过系统应用secret调用接口，存量企业暂不受影响 <a href="https://developer.work.weixin.qq.com/document/51165" rel="nofollow">查看详情</a></p><p data-sign="br2" data-type="br" data-lines="2">&nbsp;</p><p data-sign="8c8bd07f58486862a201112e85376126" data-type="p" data-lines="1"><strong>返回结果：</strong></p><div data-sign="2318effd8b9b61f63139f3cd1c6211e3" data-type="codeBlock" data-lines="7">
+      <pre class="language-json"><code class="language-json wrap"><span class="code-line"><span class="token punctuation">{</span></span>
+<span class="code-line">   <span class="token property">"errcode"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span></span>
+<span class="code-line">   <span class="token property">"errmsg"</span><span class="token operator">:</span> <span class="token string">"ok"</span></span>
+<span class="code-line"><span class="token punctuation">}</span></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><p data-sign="f2e21495051cadd2d5b0f8a3eedbae8d" data-type="p" data-lines="2"><strong>参数说明：</strong></p><div class="cherry-table-container" data-sign="4f0733d1e814ceac6b2ecee3057b4669" data-lines="4">
+        <table class="cherry-table"><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>errcode</td><td>返回码</td></tr><tr><td>errmsg</td><td>对返回码的文本描述内容</td></tr></tbody></table></div></div></div>
+    </div>
+                <script src="../doc-script.js"></script>
+                
+                
+                </body></html>

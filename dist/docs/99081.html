@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+                <meta charset="UTF-8">
+                <title>修改会议事件 - 文档 - 企业微信开发者中心</title>
+                <link rel="stylesheet" href="../doc-style.css">
+                </head>
+                <body>
+                <div id="js-ep-doc-cnt" class="ep-doc-area-cnt">
+    <div class="ep-doc-area-top" id="js-ep-doc-cnt-title">
+      <div class="ep-doc-area-title">
+        修改会议事件
+      </div>
+      <div class="ep-doc-area-subtitle">最后更新：2023/04/26</div>
+    </div>
+    <div class="ep-doc-area-cherry cherry-markdown cherry-wecom" id="js-ep-doc-cnt-md"><div data-inline-code-theme="red" data-code-block-theme="coy"><p data-sign="bfe116023d6d4f68c8e1d058863e8fd5" data-type="p" data-lines="1">当管理员对API创建的会议进行修改后，触发该事件。</p><p data-sign="br2" data-type="br" data-lines="2">&nbsp;</p><p data-sign="14b1f484e61303d0d82c8a77c66459b1" data-type="p" data-lines="2"><strong>示例</strong><br>xml请求示例：</p><div data-sign="caae01d18a928f491c912e41250850bf" data-type="codeBlock" data-lines="11">
+      <pre class="language-javascript"><code class="language-javascript wrap"><span class="code-line"><span class="token operator">&lt;</span>xml<span class="token operator">&gt;</span></span>
+<span class="code-line">   <span class="token operator">&lt;</span>ToUserName<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span><span class="token constant">CDATA</span><span class="token punctuation">[</span>toUser<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>ToUserName<span class="token operator">&gt;</span></span>
+<span class="code-line">   <span class="token operator">&lt;</span>FromUserName<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span><span class="token constant">CDATA</span><span class="token punctuation">[</span>fromUser<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>FromUserName<span class="token operator">&gt;</span> </span>
+<span class="code-line">   <span class="token operator">&lt;</span>CreateTime<span class="token operator">&gt;</span><span class="token number">1348831860</span><span class="token operator">&lt;</span><span class="token operator">/</span>CreateTime<span class="token operator">&gt;</span></span>
+<span class="code-line">   <span class="token operator">&lt;</span>MsgType<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span><span class="token constant">CDATA</span><span class="token punctuation">[</span>event<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>MsgType<span class="token operator">&gt;</span></span>
+<span class="code-line">   <span class="token operator">&lt;</span>Event<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span><span class="token constant">CDATA</span><span class="token punctuation">[</span>meeting_change<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>Event<span class="token operator">&gt;</span></span>
+<span class="code-line">   <span class="token operator">&lt;</span>ChangeType<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span><span class="token constant">CDATA</span><span class="token punctuation">[</span>modify_meeting<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>ChangeType<span class="token operator">&gt;</span></span>
+<span class="code-line">   <span class="token operator">&lt;</span>MeetingId<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token punctuation">[</span><span class="token constant">CDATA</span><span class="token punctuation">[</span>wcjgewCwAAqeJcPI1d8Pwbjt7nttzAAA<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>MeetingId<span class="token operator">&gt;</span></span>
+<span class="code-line"><span class="token operator">&lt;</span><span class="token operator">/</span>xml<span class="token operator">&gt;</span></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><p data-sign="c6247c0bd51e035939c487df6d2a61cd" data-type="p" data-lines="2"><strong>说明</strong></p><div class="cherry-table-container" data-sign="25f1c830902604201d3c4254892d5e7d" data-lines="9">
+        <table class="cherry-table"><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>ToUserName</td><td>企业微信CorpID</td></tr><tr><td>FromUserName</td><td>成员UserID</td></tr><tr><td>CreateTime</td><td>消息创建时间，unix时间戳</td></tr><tr><td>MsgType</td><td>消息类型，此时固定为：<code>event</code></td></tr><tr><td>Event</td><td>事件类型，此时固定为：<code>meeting_change</code></td></tr><tr><td>ChangeType</td><td>事件类型，此时固定为：<code>modify_meeting</code></td></tr><tr><td>MeetingId</td><td>会议ID</td></tr></tbody></table></div></div></div>
+    </div>
+                <script src="../doc-script.js"></script>
+                
+                
+                </body></html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+                <meta charset="UTF-8">
+                <title>删除学生 - 文档 - 企业微信开发者中心</title>
+                <link rel="stylesheet" href="../doc-style.css">
+                </head>
+                <body>
+                <div id="js-ep-doc-cnt" class="ep-doc-area-cnt">
+    <div class="ep-doc-area-top" id="js-ep-doc-cnt-title">
+      <div class="ep-doc-area-title">
+        删除学生
+      </div>
+      <div class="ep-doc-area-subtitle">最后更新：2024/08/22</div>
+    </div>
+    <div class="ep-doc-area-cherry cherry-markdown cherry-wecom" id="js-ep-doc-cnt-md"><div data-inline-code-theme="red" data-code-block-theme="coy"><p data-sign="a274ab87f84015e242baf3e5d3929643" data-type="p" data-lines="2"><strong>请求方式：</strong>GET（<strong>HTTPS</strong>）<br><strong>请求地址：</strong>https://qyapi.weixin.qq.com/cgi-bin/school/user/delete_student?access_token=ACCESS_TOKEN&amp;userid=USERID</p><p data-sign="f2e21495051cadd2d5b0f8a3eedbae8d" data-type="p" data-lines="2"><strong>参数说明：</strong></p><div class="cherry-table-container" data-sign="bd8eea6a726a0b93259255a5ec78b0ed" data-lines="4">
+        <table class="cherry-table"><thead><tr><th>参数</th><th>必须</th><th>说明</th></tr></thead><tbody><tr><td>access_token</td><td>是</td><td>调用接口凭证</td></tr><tr><td>userid</td><td>是</td><td>家校通信录中学生的userid</td></tr></tbody></table></div><blockquote data-sign="b7f91aa1bbc5af37548567a0ae0a9413_2" data-lines="2">注意，如果学生还有家长，则不允许删除学生，必须先把家长删除</blockquote><p data-sign="be69a8d80807fc12104a6f71258f88a9" data-type="p" data-lines="2"><strong>权限说明：</strong></p><p data-sign="576e7d7add07332f6ac042d5f9bfafb8" data-type="p" data-lines="1">调用的应用需要满足如下的权限</p><div data-sign="03bbb9c9bc80012ad9808dd02535f726" data-lines="5" class="cherry-table-container">
+        <table class="cherry-table"><thead><tr><th>应用类型</th><th>权限要求</th></tr></thead><tbody><tr><td>自建应用</td><td>配置到「 <a href="#16678/%E9%80%9A%E8%BF%87api%E8%AF%BB%E5%8F%96%E5%92%8C%E7%BC%96%E8%BE%91%E5%AE%B6%E6%A0%A1%E9%80%9A%E8%AE%AF%E5%BD%95" rel="nofollow">家校沟通-读取和编辑家校通讯录的应用</a>」中</td></tr><tr><td>代开发应用</td><td>需拥有<span style="color: rgb(255, 0, 0);">「家校沟通」可使用家校通讯录-家校通讯录编辑 </span>权限</td></tr><tr><td>第三方应用</td><td>需拥有<span style="color: rgb(255, 0, 0);">「家校沟通」使用和编辑 </span>权限</td></tr></tbody></table></div><p data-sign="4500ae644890b2a3e6568b5481167358" data-type="p" data-lines="1"><em>注：</em> 从2023年12月1日0点起，不再支持通过系统应用secret调用接口，存量企业暂不受影响 <a href="https://developer.work.weixin.qq.com/document/51165" rel="nofollow">查看详情</a></p><p data-sign="8c8bd07f58486862a201112e85376126" data-type="p" data-lines="2"><strong>返回结果：</strong></p><div data-sign="5a54237020b21f5d864bedce3cc646e6" data-type="codeBlock" data-lines="7">
+      <pre class="language-javascript"><code class="language-javascript wrap"><span class="code-line"><span class="token punctuation">{</span></span>
+<span class="code-line">	<span class="token string">"errcode"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span></span>
+<span class="code-line">    <span class="token string">"errmsg"</span><span class="token operator">:</span> <span class="token string">"deleted"</span></span>
+<span class="code-line"><span class="token punctuation">}</span></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><p data-sign="f2e21495051cadd2d5b0f8a3eedbae8d" data-type="p" data-lines="2"><strong>参数说明：</strong></p><div class="cherry-table-container" data-sign="4f0733d1e814ceac6b2ecee3057b4669" data-lines="4">
+        <table class="cherry-table"><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>errcode</td><td>返回码</td></tr><tr><td>errmsg</td><td>对返回码的文本描述内容</td></tr></tbody></table></div></div></div>
+    </div>
+                <script src="../doc-script.js"></script>
+                
+                
+                </body></html>

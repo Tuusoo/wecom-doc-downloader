@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+                <meta charset="UTF-8">
+                <title>获取下级/下游企业的access_token - 文档 - 企业微信开发者中心</title>
+                <link rel="stylesheet" href="../doc-style.css">
+                </head>
+                <body>
+                <div id="js-ep-doc-cnt" class="ep-doc-area-cnt">
+    <div class="ep-doc-area-top" id="js-ep-doc-cnt-title">
+      <div class="ep-doc-area-title">
+        获取下级/下游企业的access_token
+      </div>
+      <div class="ep-doc-area-subtitle">最后更新：2025/08/15</div>
+    </div>
+    <div class="ep-doc-area-cherry cherry-markdown cherry-wecom" id="js-ep-doc-cnt-md"><div data-inline-code-theme="red" data-code-block-theme="coy"><p data-sign="b7db2cf736aaefae4fb1e70536882666" data-type="p" data-lines="1">获取应用可见范围内下级/下游企业的access_token，该access_token可用于调用下级/下游企业通讯录的只读接口。</p><p data-sign="b2e4c9ec28f89e684d8ab57418993f45" data-type="p" data-lines="3"><strong>请求方式：</strong> POST（<strong>HTTPS</strong>）<br><strong>请求地址：</strong> https://qyapi.weixin.qq.com/cgi-bin/corpgroup/corp/gettoken?access_token=ACCESS_TOKEN</p><div data-sign="9fb10bed2b463fc03be421e194b91d28" data-type="codeBlock" data-lines="8">
+      <pre class="language-javascript"><code class="language-javascript wrap"><span class="code-line"><span class="token punctuation">{</span></span>
+<span class="code-line">	<span class="token string">"corpid"</span><span class="token operator">:</span> <span class="token string">"wwabc"</span><span class="token punctuation">,</span></span>
+<span class="code-line">	<span class="token string">"business_type"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span></span>
+<span class="code-line">	<span class="token string">"agentid"</span><span class="token operator">:</span> <span class="token number">1111</span></span>
+<span class="code-line"><span class="token punctuation">}</span></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><p data-sign="f2e21495051cadd2d5b0f8a3eedbae8d" data-type="p" data-lines="2"><strong>参数说明：</strong></p><div class="cherry-table-container" data-sign="fa22e9d05558065b1197473b7c7bc213" data-lines="6">
+        <table class="cherry-table"><thead><tr><th>参数</th><th>必须</th><th>说明</th></tr></thead><tbody><tr><td>access_token</td><td>是</td><td>调用接口凭证，上级/上游企业应用access_token</td></tr><tr><td>corpid</td><td>是</td><td>已授权的下级/下游企业corpid</td></tr><tr><td>agentid</td><td>是</td><td>已授权的下级/下游企业应用ID</td></tr><tr><td>business_type</td><td>否</td><td>填0则为企业互联/局校互联，填1则表示上下游企业，默认0</td></tr></tbody></table></div><p data-sign="be69a8d80807fc12104a6f71258f88a9" data-type="p" data-lines="2"><strong>权限说明：</strong></p><ul data-sign="c3520f68d58a4a1b679acd3aa12dda2flist1" data-lines="1" class="cherry-list__default"><li>自建应用和代开发应用</li></ul><p data-sign="8c8bd07f58486862a201112e85376126" data-type="p" data-lines="1"><strong>返回结果：</strong></p><div data-sign="85dd9983c06558e7f38b993bc7508a16" data-type="codeBlock" data-lines="9">
+      <pre class="language-javascript"><code class="language-javascript wrap"><span class="code-line"><span class="token punctuation">{</span></span>
+<span class="code-line">   <span class="token string">"errcode"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span></span>
+<span class="code-line">   <span class="token string">"errmsg"</span><span class="token operator">:</span> <span class="token string">"ok"</span><span class="token punctuation">,</span></span>
+<span class="code-line">   <span class="token string">"access_token"</span><span class="token operator">:</span> <span class="token string">"accesstoken000001"</span><span class="token punctuation">,</span></span>
+<span class="code-line">   <span class="token string">"expires_in"</span><span class="token operator">:</span> <span class="token number">7200</span></span>
+<span class="code-line"><span class="token punctuation">}</span></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><p data-sign="f2e21495051cadd2d5b0f8a3eedbae8d" data-type="p" data-lines="2"><strong>参数说明：</strong></p><div class="cherry-table-container" data-sign="684bbf37bd3e7c953e8d19271a7019e0" data-lines="6">
+        <table class="cherry-table"><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>errcode</td><td>出错返回码，为0表示成功，非0表示调用失败</td></tr><tr><td>errmsg</td><td>返回码提示语</td></tr><tr><td>access_token</td><td>获取到的下级/下游企业调用凭证，最长为512字节</td></tr><tr><td>expires_in</td><td>凭证的有效时间（秒）</td></tr></tbody></table></div></div></div>
+    </div>
+                <script src="../doc-script.js"></script>
+                
+                
+                </body></html>

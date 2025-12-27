@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+                <meta charset="UTF-8">
+                <title>打开应用管理页面 - 文档 - 企业微信开发者中心</title>
+                <link rel="stylesheet" href="../doc-style.css">
+                </head>
+                <body>
+                <div id="js-ep-doc-cnt" class="ep-doc-area-cnt">
+    <div class="ep-doc-area-top" id="js-ep-doc-cnt-title">
+      <div class="ep-doc-area-title">
+        打开应用管理页面
+      </div>
+      <div class="ep-doc-area-subtitle">最后更新：2024/08/12</div>
+    </div>
+    <div class="ep-doc-area-cherry cherry-markdown cherry-wecom" id="js-ep-doc-cnt-md"><div data-inline-code-theme="red" data-code-block-theme="coy"><p data-sign="fa7ec22bf651eda212f2496802fab33f" data-type="p" data-lines="2"><strong>接口说明</strong><br>小程序应用可以使用该接口提供按钮，让企业管理员打开应用的管理页面，快速进行修改可见范围等操作。</p><p data-sign="e4cf3817af2480251381ea41b524ce3d" data-type="p" data-lines="1"><strong>调用前提</strong></p><blockquote data-sign="f1a069ca66aeb48622e5b8612229e4a0_1" data-lines="1">必须先调用过wx.qy.login，并且调用时传入suiteId参数</blockquote><p data-sign="4ce29bd7c2066a106fab38d170af4510" data-type="p" data-lines="1"><strong>调用人身份要求</strong></p><blockquote data-sign="9fe800531d69e513ff29b558e17f31f3_1" data-lines="1">企业超级管理员<br>具有应用管理权限的企业分级管理员</blockquote><p data-sign="5477f16037a9e95ffb1ce412685a5e6b" data-type="p" data-lines="2"><strong>参数</strong></p><p data-sign="d955108408cb3535506adda1a48c3430" data-type="p" data-lines="2"><strong>Object object</strong></p><div class="cherry-table-container" data-sign="550abc7e644e56c63e8c5692ba1b705a" data-lines="7">
+        <table class="cherry-table"><thead><tr><th>参数名</th><th>类型</th><th>必填</th><th>说明</th><th>企业微信版本要求</th></tr></thead><tbody><tr><td>page</td><td>String</td><td>否</td><td>不指定时，表示为跳转至应用管理首页。<br>指定时，表示跳转的应用二级页。目前支持的二级页有：<br>permission：对应为应用权限详情页。<br>datazone_permission：对应为数据与智能专区权限授权页。</td><td>≥4.1.22</td></tr><tr><td>suiteId</td><td>String</td><td>否</td><td>不指定时，表示为跳转agentConfig指定的应用管理页。<br>指定时，表示为跳转的其他应用管理页。目前仅支持会话内容存档应用。指定的suiteid必须是同服务商的应用，且当前企业有授权关系，同时当前用户必须是超管</td><td>≥4.1.22</td></tr><tr><td>success</td><td>Function</td><td>否</td><td>接口调用成功的回调函数</td><td></td></tr><tr><td>fail</td><td>Function</td><td>否</td><td>接口调用失败的回调函数</td><td></td></tr><tr><td>complete</td><td>Function</td><td>否</td><td>接口调用结束的回调函数（调用成功、失败都会执行）</td><td></td></tr></tbody></table></div><blockquote data-sign="e058d290c99684cf44fa98cdd6b4eeea_3" data-lines="3">page=datazone_permission，需要满足：<br>- 企业访问者身份为超级管理员<br>- 应用需要满足勾选了“数据与智能专区权限”（注：该权限目前灰度开放）<br>- 应用类型为第三方应用/代开发应用（注：不支持上下游共享应用）</blockquote><h4 id="%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%EF%BC%9A" data-sign="a3eb661066708b00561e1028019ee536" data-lines="2"><a class="anchor" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%EF%BC%9A"></a>示例代码：</h4><div data-sign="4654d52e5144722d7bf03744a0873ca7" data-type="codeBlock" data-lines="14">
+      <pre class="language-js"><code class="language-js wrap"><span class="code-line">wx<span class="token punctuation">.</span>qy<span class="token punctuation">.</span><span class="token function">openAppManage</span><span class="token punctuation">(</span><span class="token punctuation">{</span></span>
+<span class="code-line">    page<span class="token operator">:</span> <span class="token string">"permission"</span><span class="token punctuation">,</span> <span class="token comment">// 非必填，指定跳转的页面地址</span></span>
+<span class="code-line">    suiteId<span class="token operator">:</span> <span class="token string">"wwabcdefghijk"</span><span class="token punctuation">,</span> <span class="token comment">// 非必填，指定跳转的关联应用</span></span>
+<span class="code-line">    <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="code-line">			<span class="token comment">// 调用成功</span></span>
+<span class="code-line">	<span class="token punctuation">}</span><span class="token punctuation">,</span></span>
+<span class="code-line">	<span class="token function-variable function">fail</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="code-line">		<span class="token comment">// 调用失败</span></span>
+<span class="code-line">	<span class="token punctuation">}</span></span>
+<span class="code-line"><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="code-line"></span></code><div class="codeCopyBtn"></div><div class="codeCopyBtn_tips">点击复制</div></pre>
+    </div><p data-sign="19d77ca4bd9fdd25a4b79ee9df6d05bf" data-type="p" data-lines="2"><strong>平台版本说明</strong></p><div class="cherry-table-container" data-sign="870db230d15d468c3df435ba289e11a6" data-lines="6">
+        <table class="cherry-table"><thead><tr><th>平台</th><th>企业微信版本要求</th></tr></thead><tbody><tr><td>ios</td><td>≥4.0.2</td></tr><tr><td>android</td><td>≥4.0.2</td></tr><tr><td>win</td><td>≥4.0.2</td></tr><tr><td>mac</td><td>≥4.0.2</td></tr></tbody></table></div><p data-sign="db6d96cf3e0b1e20d48c50f56709e54d" data-type="p" data-lines="2"><strong>应用权限说明</strong></p><div class="cherry-table-container" data-sign="19fe500fa15205956bf5147c340fc90d" data-lines="5">
+        <table class="cherry-table"><thead><tr><th>应用类型</th><th>是否支持</th></tr></thead><tbody><tr><td>自建应用</td><td>支持</td></tr><tr><td>第三方应用</td><td>支持</td></tr><tr><td>代开发自建应用</td><td>支持</td></tr></tbody></table></div></div></div>
+    </div>
+                <script src="../doc-script.js"></script>
+                
+                
+                </body></html>
